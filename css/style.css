@@ -2,6 +2,8 @@
 body {
   margin: 0;
   padding: 16px;
+  /* 下面多留一點空白，手機鍵盤跳出來時還滑得到「確認」 */
+  padding-bottom: 50vh;
   font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   line-height: 1.5;
 }
@@ -9,4 +11,203 @@ body {
 h1 {
   font-size: 1.6rem;
   margin: 0;
+}
+
+/* 第 2 步：輸入框、確認卡、設定 */
+
+/* 有 hidden 的元件一定要藏起來 */
+[hidden] {
+  display: none !important;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 8px;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  font-size: 1rem; /* 至少 16px，手機點輸入框才不會自動放大 */
+}
+
+input,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  background: #fff;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #1f6f5c;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9aa;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: #e4e4e4;
+  color: #222;
+}
+
+button.danger {
+  background: #b3261e;
+}
+
+/* 輸入一句話 */
+.say-form {
+  margin-top: 16px;
+}
+
+.say-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.say-row input {
+  flex: 1;
+}
+
+/* 轉圈 */
+.waiting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ccc;
+  border-top-color: #1f6f5c;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 訊息 */
+.done-message {
+  color: #1f6f5c;
+  font-weight: bold;
+}
+
+.left-over {
+  white-space: pre-line;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff4d6;
+  border: 1px solid #e0b400;
+}
+
+.slow-banner,
+.problem {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fde8e7;
+  border: 1px solid #b3261e;
+}
+
+.problem {
+  margin-top: 16px;
+}
+
+/* 確認卡 */
+.card {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #bbb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.card-reason {
+  margin-top: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #eef3ff;
+  border: 1px solid #6c8cd5;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.field-name {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.raw-text,
+.date-text {
+  margin: 2px 0 0;
+}
+
+/* 原句不能改，但可以長按複製 */
+.raw-text {
+  padding: 10px;
+  border-radius: 8px;
+  background: #eee;
+  user-select: text;
+  -webkit-user-select: text;
+  word-break: break-all;
+}
+
+.card-error {
+  color: #b3261e;
+  font-weight: bold;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.card-buttons button {
+  flex: 1;
+}
+
+.count-line {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* 設定 */
+.settings {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+}
+
+.settings-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.key-status {
+  margin-bottom: 0;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #666;
 }

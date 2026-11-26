@@ -9,5 +9,91 @@
 </head>
 <body>
   <h1>我的記帳本</h1>
+
+  <!-- 慢速測試開關：網址有 ?slow=1 才會出現 -->
+  <p id="slow-banner" class="slow-banner" hidden>慢速測試開關已打開：送出後會故意等到 8 秒，用來確認不會一直轉圈。</p>
+
+  <!-- 資料讀不懂或版本太新時，才會出現這一塊 -->
+  <section id="ledger-problem" class="problem" hidden>
+    <p id="ledger-problem-text"></p>
+    <button type="button" id="start-over-btn" class="danger" hidden>重新開始（變成 0 筆）</button>
+  </section>
+
+  <!-- 輸入一句話 -->
+  <form id="say-form" class="say-form" autocomplete="off">
+    <label for="say-input">說一句話，例如「午餐便當一百二」</label>
+    <div class="say-row">
+      <input id="say-input" type="text" placeholder="午餐便當一百二">
+      <button type="submit" id="send-btn">送出</button>
+    </div>
+  </form>
+
+  <!-- 等 Gemini 時的轉圈（最多 8 秒） -->
+  <p id="waiting" class="waiting" hidden><span class="spinner" aria-hidden="true"></span>Gemini 正在拆這句話，最多等 8 秒…</p>
+
+  <!-- 記好之後的訊息 -->
+  <p id="done-message" class="done-message" hidden></p>
+  <p id="left-over-after" class="left-over" hidden></p>
+
+  <!-- 確認卡 -->
+  <section id="card" class="card" hidden>
+    <p id="card-reason" class="card-reason" hidden></p>
+
+    <div class="field">
+      <span class="field-name">原句</span>
+      <p id="card-raw" class="raw-text"></p>
+    </div>
+
+    <div class="field">
+      <span class="field-name">日期</span>
+      <p id="card-date" class="date-text"></p>
+    </div>
+
+    <div class="field">
+      <label class="field-name" for="card-amount">金額（整數，新台幣）</label>
+      <input id="card-amount" type="text" inputmode="numeric" placeholder="例如 120">
+    </div>
+
+    <div class="field">
+      <label class="field-name" for="card-category">分類</label>
+      <select id="card-category"></select>
+    </div>
+
+    <div class="field">
+      <label class="field-name" for="card-note">備註（可以空白）</label>
+      <input id="card-note" type="text" placeholder="例如 午餐便當">
+    </div>
+
+    <!-- 拆出不只一筆時，列出沒記到的 -->
+    <p id="left-over" class="left-over" hidden></p>
+
+    <p id="card-error" class="card-error" hidden></p>
+
+    <div class="card-buttons">
+      <button type="button" id="confirm-btn">確認</button>
+      <button type="button" id="cancel-btn" class="secondary">取消</button>
+    </div>
+  </section>
+
+  <!-- 暫時用來確認真的存進去了，下一步做正式清單就拿掉 -->
+  <p id="count-line" class="count-line"></p>
+
+  <!-- 設定：Gemini 的 key -->
+  <section class="settings">
+    <h2>設定</h2>
+    <label for="key-input">Gemini 的 key</label>
+    <input id="key-input" type="password" autocomplete="off" placeholder="把 key 貼在這裡">
+    <div class="settings-buttons">
+      <button type="button" id="key-save-btn">儲存</button>
+      <button type="button" id="key-clear-btn" class="secondary">清除</button>
+    </div>
+    <p id="key-status" class="key-status"></p>
+    <p class="hint">這支 key 只存在這台手機的瀏覽器，換手機要重新貼；不要把 key 傳給別人。</p>
+    <p class="hint">沒貼 key 也可以記帳，只是要自己填金額和分類。</p>
+  </section>
+
+  <script src="js/storage.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
