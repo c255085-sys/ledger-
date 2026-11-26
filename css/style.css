@@ -1,0 +1,12 @@
+/* 第 1 步：只放最基本的字體和留白，讓手機看起來舒服 */
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
